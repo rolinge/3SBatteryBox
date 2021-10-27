@@ -9,23 +9,23 @@ color("red")
          linear_extrude(height = h)
             square([w-2*wall, l-2*wall
             ], center = true)   ;
-    translate([-w/4,l/2+1,h/3*2])
+    translate([-w/4,l/2+1,h/3*.8])
     rotate([90,0,0])
     cylinder(h = wall*5,
             r1 = wireholddiameter/2,
             r2 = wireholddiameter/2,
             $fn = 36,
             center = false);  //Dimension of posts in x and y
-    translate([0,l/2+1,h/3])
+    translate([0,l/2+1,4])
     rotate([90,0,0])
         linear_extrude(height = 5)
             square(switchcutout, center = false);
 
-    translate([-w+23.5+8*wall,l/2+1,basethickness+6])
+    /* // this hole is for a small voltmeter translate([-w+23.5+8*wall,l/2+1,basethickness+6])
     rotate([90,0,0])
         linear_extrude(height = 5)
             square(voltmetercutout,
-            center = false);
+            center = false); */
 
        }
 
@@ -48,7 +48,7 @@ module sidepost(x=0,y=0, postcolor="blue") {
    color(postcolor)
     translate ([x,y,basethickness])
 
-        linear_extrude(height = h/3-basethickness)
+        linear_extrude(height = h/2.3-basethickness)
             square(postsize, center = false);
 }
 
@@ -56,7 +56,7 @@ module holdslot(x=0,y=0, width=10, postcolor="yellow") {
    color(postcolor)
     translate ([x,y,basethickness])
 
-        linear_extrude(height = h/3-basethickness)
+        linear_extrude(height = h/2.5-basethickness)
             square([width, 3
             ], center = false);
 }
