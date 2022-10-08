@@ -16,7 +16,7 @@ difference() {
     linear_extrude(height = basethickness)
             square([w-2*wall-interference, l-2*wall-interference
             ], center = true);
-    translate ([0,0,basethickness])
+    translate ([0,0,0])
     linear_extrude(height = basethickness)
             square([w-4*wall-interference, l-4*wall-interference
             ], center = true);
