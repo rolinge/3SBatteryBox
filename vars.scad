@@ -1,8 +1,9 @@
 echo(version=version());
 //All dimensions are in mm
 
-l = 110; // lenght of box in x dir
-w = 68;  // width of box in y dir
+
+batteryHolder3s=[69,110.0];
+batteryHolder2s=[50,106.0];
 h=32;    // height of box without lid
 wall=2;  // wall thickness
 postloc=28; // where the edge posts are in y direction
