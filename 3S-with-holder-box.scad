@@ -22,8 +22,9 @@ color("red")
               $fn = 36,
               center = false);  //Dimension of posts in x and y
 
-// this hole is for a small voltmeter 
-     smallVoltmeter([5,batteryHolder3s.y/2+2,h/2],[90,0,0]);
+// this hole is for a small voltmeter
+    smallVoltmeter([2,batteryHolder3s.y/2+2,h/2],[90,0,0]);
+     //smallVoltmeter([5,batteryHolder3s.y/2+2,h/2],[90,0,0]);
 
      // Hole for the USB Charging connector
      usbC15VBoard(size=Usb15Package ,
@@ -49,6 +50,15 @@ holdslot(  -batteryHolder3s.x/2+wall,
 
 holdslot(  -batteryHolder3s.x/2+wall,batteryHolder3s.y/2-Usb15Package.x-wall-4,holdslotwidth);
 holdslot(  -batteryHolder3s.x/2+wall,batteryHolder3s.y/2-Usb15Package.x-wall-1.2,holdslotwidth);
+
+// posts for standoff for voltmeter       smallVoltmeter([5,batteryHolder3s.y/2+2,h/2],[90,0,0]);
+
+smallPost(size=[2,6-wall,h/2+voltMeterCutout.y/2-wall+2],
+  translation=[0,batteryHolder3s.y/2-6,wall]);
+smallPost(size=[2,6-wall,h/2+voltMeterCutout.y/2-wall+2],
+  translation=[voltMeterCutout.x+2,batteryHolder3s.y/2-6,wall]);
+// For debugging, draw the Usb15Package
+//smallPost(size=Usb15Package, translation=[-batteryHolder3s.x/2+wall, batteryHolder3s.y/2-Usb15Package.x, wall], rotation=[90,0,90]);
 
 module sidepost(x=0,y=0, postcolor="blue") {
    color(postcolor)
@@ -85,4 +95,13 @@ module holdslot(x=0,y=0, width=10, postcolor="yellow") {
         linear_extrude(height = h/2.5-basethickness)
             square([width, 3
             ], center = false);
+}
+
+// generic module for making a square post
+module smallPost(size=[0,0,0],translation=[0,0,0], rotation=[0,0,0], color="blue") {
+   color(color)
+    translate (translation)
+    rotate(rotation)
+    linear_extrude(height = size.z)
+            square([size.x,size.y ], center = false);
 }
