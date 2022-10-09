@@ -48,7 +48,8 @@ holdslot(  -batteryHolder3s.x/2+wall,
           -batteryHolder3s.y/2+wall  + holdslotloc,
           holdslotwidth);
 
-holdslot(  -batteryHolder3s.x/2+wall,batteryHolder3s.y/2-Usb15Package.x-1.2,holdslotwidth,postcolor="pink");
+holdslot(  -batteryHolder3s.x/2+wall,batteryHolder3s.y/2-Usb15Package.x-1.2,holdslotwidth,
+  postcolor="pink");
 
 // posts for standoff for voltmeter       smallVoltmeter([5,batteryHolder3s.y/2+2,h/2],[90,0,0]);
 
