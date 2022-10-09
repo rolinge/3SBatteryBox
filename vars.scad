@@ -2,7 +2,7 @@ echo(version=version());
 //All dimensions are in mm
 
 
-batteryHolder3s=[69,110.0];
+batteryHolder3s=[68,110.0];
 batteryHolder2s=[50,106.0];
 h=32;    // height of box without lid
 wall=2;  // wall thickness
@@ -18,7 +18,7 @@ switchDepth = 16.0;
 voltMeterCutout=[24,11.5];
 // Allow for slip by making the ridge a little smaller than the box it fits into.
 interference=0.8;
-Usb15=[17.2,11.7];
+Usb15=[17.2,12.1];
 usbCPortStandoff=2.0;
 usbConnector=[10,7.0,4.2];
 circuitBoardThick=2.0;

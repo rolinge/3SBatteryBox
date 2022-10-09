@@ -48,8 +48,7 @@ holdslot(  -batteryHolder3s.x/2+wall,
           -batteryHolder3s.y/2+wall  + holdslotloc,
           holdslotwidth);
 
-holdslot(  -batteryHolder3s.x/2+wall,batteryHolder3s.y/2-Usb15Package.x-wall-4,holdslotwidth);
-holdslot(  -batteryHolder3s.x/2+wall,batteryHolder3s.y/2-Usb15Package.x-wall-1.2,holdslotwidth);
+holdslot(  -batteryHolder3s.x/2+wall,batteryHolder3s.y/2-Usb15Package.x-1.2,holdslotwidth,postcolor="pink");
 
 // posts for standoff for voltmeter       smallVoltmeter([5,batteryHolder3s.y/2+2,h/2],[90,0,0]);
 
@@ -57,6 +56,9 @@ smallPost(size=[2,6-wall,h/2+voltMeterCutout.y/2-wall+2],
   translation=[0,batteryHolder3s.y/2-6,wall]);
 smallPost(size=[2,6-wall,h/2+voltMeterCutout.y/2-wall+2],
   translation=[voltMeterCutout.x+2,batteryHolder3s.y/2-6,wall]);
+
+smallPost(size=[1,Usb15.x*0.6,Usb15Package.y],
+  translation=[-batteryHolder3s.x/2+wall,batteryHolder3s.y/2-wall-Usb15.x*0.6,wall+2]);
 // For debugging, draw the Usb15Package
 //smallPost(size=Usb15Package, translation=[-batteryHolder3s.x/2+wall, batteryHolder3s.y/2-Usb15Package.x, wall], rotation=[90,0,90]);
 
