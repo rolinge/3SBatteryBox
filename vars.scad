@@ -2,6 +2,7 @@ echo(version=version());
 //All dimensions are in mm
 
 
+BatBox=[[68,110.0],[50,110.0], [86.0,110.0]];
 batteryHolder3s=[68,110.0];
 batteryHolder2s=[50,106.0];
 h=32;    // height of box without lid
