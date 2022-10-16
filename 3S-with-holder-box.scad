@@ -52,10 +52,6 @@ color("red")
 
 }
 
-color("orange") translate([-BatBox[BatBoxSize].x/4+wireholddiameter/2+3,BatBox[BatBoxSize].y/2+1,switchcutout.x+2*wall])
-    linear_extrude(height = 55);
-
-
 if (!faceOnly)
 {
   sidepost(BatBox[BatBoxSize].x/2-wall-postsize[0],-BatBox[BatBoxSize].y/2+wall + 2*postloc);
