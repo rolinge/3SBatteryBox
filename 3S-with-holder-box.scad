@@ -19,9 +19,10 @@ color("red")
             square([BatBox[BatBoxSize].x-2*wall, BatBox[BatBoxSize].y-2*wall
             ], center = true)   ;
             //  Hole for the small switch
-      translate([-BatBox[BatBoxSize].x/4+wireholddiameter/2+3,BatBox[BatBoxSize].y/2+1,switchcutout.x+2*wall])
+      translate([-BatBox[BatBoxSize].x/4+wireholddiameter/2,BatBox[BatBoxSize].y/2+1,switchcutout.x+2*wall])
       rotate([90,90,0])
-          linear_extrude(height = 5);
+          linear_extrude(height = 5)
+            square(switchcutout, center = false);
 // Hole for the wires
       translate([+BatBox[BatBoxSize].x/4,BatBox[BatBoxSize].y/2+1,h/3*.8])
       rotate([90,0,0])
@@ -32,7 +33,7 @@ color("red")
               center = false);  //Dimension of posts in x and y
 
 // this hole is for a small voltmeter
-    smallVoltmeter([2,BatBox[BatBoxSize].y/2+2,h/2],[90,0,0]);
+    smallVoltmeter([voltMeterXOffset[BatBoxSize],BatBox[BatBoxSize].y/2+2,h/2],[90,0,0]);
      //smallVoltmeter([5,BatBox[BatBoxSize].y/2+2,h/2],[90,0,0]);
 
      // Hole for the USB Charging connector
@@ -50,6 +51,11 @@ color("red")
     }
 
 }
+
+color("orange") translate([-BatBox[BatBoxSize].x/4+wireholddiameter/2+3,BatBox[BatBoxSize].y/2+1,switchcutout.x+2*wall])
+    linear_extrude(height = 55);
+
+
 if (!faceOnly)
 {
   sidepost(BatBox[BatBoxSize].x/2-wall-postsize[0],-BatBox[BatBoxSize].y/2+wall + 2*postloc);
@@ -72,16 +78,16 @@ holdslot(  -BatBox[BatBoxSize].x/2+wall,BatBox[BatBoxSize].y/2-Usb15Package.x-1.
 // posts for standoff for voltmeter       smallVoltmeter([5,BatBox[BatBoxSize].y/2+2,h/2],[90,0,0]);
 
 smallPost(size=[2,6-wall,h/2+voltMeterCutout.y/2-wall+2],
-  translation=[0,BatBox[BatBoxSize].y/2-6,wall]);
+  translation=[-2+voltMeterXOffset[BatBoxSize],BatBox[BatBoxSize].y/2-6,wall]);
 smallPost(size=[2,6-wall,h/2+voltMeterCutout.y/2-wall+2],
-  translation=[voltMeterCutout.x+2,BatBox[BatBoxSize].y/2-6,wall]);
+  translation=[voltMeterCutout.x+voltMeterXOffset[BatBoxSize],BatBox[BatBoxSize].y/2-6,wall], color="black");
 
 smallPost(size=[.8,Usb15.x*0.6,Usb15Package.y],
   translation=[-BatBox[BatBoxSize].x/2+wall,BatBox[BatBoxSize].y/2-wall-Usb15.x*0.6,wall]);
 smallPost(size=[Usb15Package.z,Usb15Package.y,2],
-  translation=[-BatBox[BatBoxSize].x/2+wall,BatBox[BatBoxSize].y/2-wall-Usb15.x*0.6,wall]);
+  translation=[-BatBox[BatBoxSize].x/2+wall,BatBox[BatBoxSize].y/2-wall-Usb15.x*0.6,wall], color="gray");
 // For debugging, draw the Usb15Package
-//smallPost(size=Usb15Package, translation=[-BatBox[BatBoxSize].x/2+wall, BatBox[BatBoxSize].y/2-Usb15Package.x, wall], rotation=[90,0,90]);
+//smallPost(size=Usb15blackPackage, translation=[-BatBox[BatBoxSize].x/2+wall, BatBox[BatBoxSize].y/2-Usb15Package.x, wall], rotation=[90,0,90]);
 
 module sidepost(x=0,y=0, postcolor="blue") {
    color(postcolor)

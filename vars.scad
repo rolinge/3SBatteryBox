@@ -3,6 +3,7 @@ echo(version=version());
 
 
 BatBox=[[68,110.0],[50,110.0], [86.0,110.0]];
+voltMeterXOffset = [0.0, -5.0, -2,0];
 batteryHolder3s=[68,110.0];
 batteryHolder2s=[50,106.0];
 h=32;    // height of box without lid
