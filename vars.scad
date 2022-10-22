@@ -19,7 +19,7 @@ switchDepth = 16.0;
 //Perforation size: 23mm*10.5mm
 voltMeterCutout=[24,11.5];
 // Allow for slip by making the ridge a little smaller than the box it fits into.
-interference=0.8;
+interference=1.2;
 Usb15=[17.2,12.1];
 usbCPortStandoff=2.0;
 usbConnector=[10,7.0,4.2];

@@ -13,12 +13,13 @@ linear_extrude(height = wall)
             ], center = true);
  // now the inside rim is another box minus a other box...
  //  taking into account that we need to give some slip fit with the interference parameter
-difference() {
-    linear_extrude(height = basethickness)
+ color("blue")
+ translate ([0,0,wall-.1])
+ difference() {
+    linear_extrude(height = wall)
             square([BatBox[BatBoxSize].x-2*wall-interference, BatBox[BatBoxSize].y-2*wall-interference
             ], center = true);
-    translate ([0,0,0])
-    linear_extrude(height = basethickness)
-            square([BatBox[BatBoxSize].x-4*wall-interference, BatBox[BatBoxSize].y-4*wall-interference
+    linear_extrude(height = wall+.1)
+            square([BatBox[BatBoxSize].x-4*wall, BatBox[BatBoxSize].y-4*wall
             ], center = true);
 }
