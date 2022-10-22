@@ -18,29 +18,31 @@ color("red")
          linear_extrude(height = h)
             square([BatBox[BatBoxSize].x-2*wall, BatBox[BatBoxSize].y-2*wall
             ], center = true)   ;
-            //  Hole for the small switch
-      translate([-BatBox[BatBoxSize].x/4+wireholddiameter/2,BatBox[BatBoxSize].y/2+1,switchcutout.x+2*wall])
-      rotate([90,90,0])
-          linear_extrude(height = 5)
-            square(switchcutout, center = false);
+//  Hole for the small switch, but only for size != 2S
+
+      if (BatBoxSize != 1) {
+        translate([-BatBox[BatBoxSize].x/4+wireholddiameter/2,BatBox[BatBoxSize].y/2+1,switchcutout.x+2*wall])
+        rotate([90,90,0])
+            linear_extrude(height = 5)
+              square(switchcutout, center = false);
+      } else
+      {
+          smallPost(size=[switchcutout.x, switchcutout.y, wall*2],
+          translation=[-BatBox[BatBoxSize].x/2+wall+.01,BatBox[BatBoxSize].y/2-20,h-switchcutout.x-4],
+          rotation=[0,-90,0]);
+        }
+
+
 // Hole for the wires
-      translate([+BatBox[BatBoxSize].x/4,BatBox[BatBoxSize].y/2+1,h/3*.8])
-      rotate([90,0,0])
-      cylinder(h = wall*5,
-              r1 = wireholddiameter/2,
-              r2 = wireholddiameter/2,
-              $fn = 36,
-              center = false);  //Dimension of posts in x and y
+      hole(wireholddiameter/2,wireholddiameter/2,
+        translation=[voltMeterCutout.x+voltMeterXOffset[BatBoxSize]-barrelHoleDiameter,BatBox[BatBoxSize].y/2+1,h/3*.8], rotation=[90,0,0]);
 
 // this hole is for a small voltmeter
     smallVoltmeter([voltMeterXOffset[BatBoxSize],BatBox[BatBoxSize].y/2+2,h/2],[90,0,0]);
-     //smallVoltmeter([5,BatBox[BatBoxSize].y/2+2,h/2],[90,0,0]);
-
-     // Hole for the USB Charging connector
-     usbC15VBoard(size=Usb15Package ,
-                    translation=[-BatBox[BatBoxSize].x/2+wall+1,
-                    BatBox[BatBoxSize].y/2-Usb15Package.x+.01,wall+2],
-                    rotation=[90,0,90]);
+// Hole for the Barrell Charging connector
+     hole(barrelHoleDiameter/2,barrelHoleDiameter/2,
+          translation=[-BatBox[BatBoxSize].x/2+wall+barrelHoleDiameter,BatBox[BatBoxSize].y/2+.1,4*wall],
+          rotation=[90,-0,0]);
 
     if (faceOnly) {
       color("purple")
@@ -51,6 +53,8 @@ color("red")
     }
 
 }
+
+
 
 if (!faceOnly)
 {
@@ -68,8 +72,6 @@ if (!faceOnly)
             -BatBox[BatBoxSize].y/2+wall  + holdslotloc,
             holdslotwidth);
 }
-holdslot(  -BatBox[BatBoxSize].x/2+wall,BatBox[BatBoxSize].y/2-Usb15Package.x-1.2,holdslotwidth,
-  postcolor="pink");
 
 // posts for standoff for voltmeter       smallVoltmeter([5,BatBox[BatBoxSize].y/2+2,h/2],[90,0,0]);
 
@@ -78,10 +80,8 @@ smallPost(size=[2,6-wall,h/2+voltMeterCutout.y/2-wall+2],
 smallPost(size=[2,6-wall,h/2+voltMeterCutout.y/2-wall+2],
   translation=[voltMeterCutout.x+voltMeterXOffset[BatBoxSize],BatBox[BatBoxSize].y/2-6,wall], color="black");
 
-smallPost(size=[.8,Usb15.x*0.6,Usb15Package.y],
-  translation=[-BatBox[BatBoxSize].x/2+wall,BatBox[BatBoxSize].y/2-wall-Usb15.x*0.6,wall]);
-smallPost(size=[Usb15Package.z,Usb15Package.y,2],
-  translation=[-BatBox[BatBoxSize].x/2+wall,BatBox[BatBoxSize].y/2-wall-Usb15.x*0.6,wall], color="gray");
+//smallPost(size=[.8,Usb15.x*0.6,Usb15Package.y],  translation=[-BatBox[BatBoxSize].x/2+wall,BatBox[BatBoxSize].y/2-wall-Usb15.x*0.6,wall]);
+//smallPost(size=[Usb15Package.z,Usb15Package.y,2],  translation=[-BatBox[BatBoxSize].x/2+wall,BatBox[BatBoxSize].y/2-wall-Usb15.x*0.6,wall], color="gray");
 // For debugging, draw the Usb15Package
 //smallPost(size=Usb15blackPackage, translation=[-BatBox[BatBoxSize].x/2+wall, BatBox[BatBoxSize].y/2-Usb15Package.x, wall], rotation=[90,0,90]);
 
@@ -129,4 +129,15 @@ module smallPost(size=[0,0,0],translation=[0,0,0], rotation=[0,0,0], color="blue
     rotate(rotation)
     linear_extrude(height = size.z)
             square([size.x,size.y ], center = false);
+}
+
+module hole(radius1=1,radius2=1,translation=[0,0,0], rotation=[0,0,0], color="blue"){
+  translate(translation)
+  rotate(rotation)
+  cylinder(h = wall*5,
+          r1 = radius1,
+          r2 = radius2,
+          $fn = 36,
+          center = false);  //Dimension of posts in x and y
+
 }
