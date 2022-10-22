@@ -41,7 +41,7 @@ color("red")
     smallVoltmeter([voltMeterXOffset[BatBoxSize],BatBox[BatBoxSize].y/2+2,h/2],[90,0,0]);
 // Hole for the Barrell Charging connector
      hole(barrelHoleDiameter/2,barrelHoleDiameter/2,
-          translation=[-BatBox[BatBoxSize].x/2+wall+barrelHoleDiameter,BatBox[BatBoxSize].y/2+.1,4*wall],
+          translation=[-BatBox[BatBoxSize].x/2+wall+barrelHoleDiameter,BatBox[BatBoxSize].y/2+.1,wall+h/3],
           rotation=[90,-0,0]);
 
     if (faceOnly) {
